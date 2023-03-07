@@ -1,5 +1,5 @@
 //? me traigo todas las funciones de mi controlador
-const { isAuth, isAdmin } = require("../../middlewares/auth");
+const { isAdmin } = require("../../middlewares/auth");
 const upload = require("../../middlewares/file");
 const { getAllLibros, getLibroById, getByTitle, crearLibro, eliminarLibro, eliminarLibroPorTitulo, actualizarLibro } = require("./libros.controller");
 
