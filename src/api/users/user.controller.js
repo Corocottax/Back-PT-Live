@@ -90,7 +90,7 @@ const login = async (req, res, next) => {
 
         if (bcrypt.compareSync(req.body.password, userToLog.password)) {
             const token = generateSign(userToLog._id, userToLog.email);
-            return res.status(200).json({token: token});
+            return res.status(200).json({token: token, rol: userToLog.rol});
         } else {
             return res.status(500).json("Te has equivocado de contraseña máquina");
         }
