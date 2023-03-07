@@ -10,7 +10,8 @@ const isAuth = async (req, res, next) => {
 
         //*  si no tiene ese campo entonces significa que no está logueado, pues no le dejo pasar
         if (!token) {
-            return res.status(500).json("No estás autorizado crack");
+            const error = new Error("No estás autorizado crack")
+            return res.json(error);
         }
 
         //* de tener token tenemos que comprobar que sea válido, para ello, necesitamos sólo el token, pero la autorización me escribe Bearer dkfjlasdfj, por lo tanto, quitamos el Bearer*espacio*
