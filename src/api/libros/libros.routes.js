@@ -14,15 +14,15 @@ const librosRoutes = require("express").Router();
 librosRoutes.get("/", getAllLibros);
 
 //! utilizo middleware de si está logueado para dejarle ver un libro por id
-librosRoutes.get("/:id", [isAuth], getLibroById);
+librosRoutes.get("/:id", getLibroById);
 
 librosRoutes.get("/getByTitle/:title", getByTitle);
 
 //? uso de cloudinary
 librosRoutes.post("/", [isAdmin], upload.single("caratula"), crearLibro);
 
-librosRoutes.delete("/:idLibro", [isAuth], eliminarLibro);
-librosRoutes.delete("/deleteByTitle/:titulo", eliminarLibroPorTitulo);
+librosRoutes.delete("/:idLibro", [isAdmin], eliminarLibro);
+librosRoutes.delete("/deleteByTitle/:titulo", [isAdmin], eliminarLibroPorTitulo);
 librosRoutes.put("/:id", [isAdmin], upload.single("caratula"), actualizarLibro);
 
 //? exportamos las rutas para que puedan ser utilizadas por el servidor en el index.js

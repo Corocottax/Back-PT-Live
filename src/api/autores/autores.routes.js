@@ -4,6 +4,6 @@ const { postAutor, getAutores } = require("./autores.controller");
 const AutoresRoutes = require("express").Router();
 
 AutoresRoutes.post("/", [isAdmin], postAutor);
-AutoresRoutes.get("/", [isAuth], getAutores);
+AutoresRoutes.get("/", getAutores);
 
 module.exports = AutoresRoutes;
