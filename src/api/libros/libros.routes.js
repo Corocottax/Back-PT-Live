@@ -1,5 +1,5 @@
 //? me traigo todas las funciones de mi controlador
-const { isAdmin } = require("../../middlewares/auth");
+const { isAdmin, isAuth } = require("../../middlewares/auth");
 const upload = require("../../middlewares/file");
 const { getAllLibros, getLibroById, getByTitle, crearLibro, eliminarLibro, eliminarLibroPorTitulo, actualizarLibro } = require("./libros.controller");
 
@@ -11,7 +11,7 @@ const librosRoutes = require("express").Router();
 //! aquí estamos llegando gracias al index.js utilizando el servidor para declarar la ruta principal que gestiona el resto de rutas que ya tenemos aquí, es decir, en el index.js -> server.use("/libros", librosRoutes);
 
 //* declaro rutas y que ejecuta cada ruta en este caso la ruta / ejecuta la función declarada en el controlador getAllLibros
-librosRoutes.get("/", getAllLibros);
+librosRoutes.get("/", [isAuth], getAllLibros);
 
 //! utilizo middleware de si está logueado para dejarle ver un libro por id
 librosRoutes.get("/:id", getLibroById);
